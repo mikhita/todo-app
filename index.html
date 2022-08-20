@@ -3,56 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link rel="stylesheet" href="styles.css">
-
   <title>Frontend Mentor | Todo app</title>
-
-  
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="todoAndImg">
-  <p class="todoTitle">Todo</p>
-  <div class="displayModeImg">
-    <img class="iconSun" src="./images/icon-sun.svg" alt="">
-    <img src="./images/icon-moon.svg" alt="" class="iconMoon iconDisplayNone">
-  </div>
-</div>
-
-<div class="inputForAdding">
-  <label class="container">
-    <input type="checkbox" class="checkbox-round">
-    <span class="checkmark"><svg xmlns="http://www.w3.org/2000/svg" width="11"
-       height="9"><path fill="none"
-       stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/></svg></span>
-  </label>
-  <input type="text" class="writeTodo" placeholder="Create a new todo…">
-</div>
-
-  <!-- Add dynamic number --> 
-  <footer>
-<div class="itemsLeftAndClear">
-  <div class="itemsLeftAndNumber">
-     <p class="itemsCounter">5</p>
-    <p class="itemsLeftText">items left</p>
-  </div>
-  <p class="clearCompleteText">Clear Completed</p>
-</div>
-  <div class="functionality">
-    <div class="choiceTodos">
-      <p class="all">All</p>
-      <p class="actives">Active</p>
-      <p class="completed">Completed</p>
-  </div>
-    <div class="dragAndDrop">
-      <p class="dragAndDropText">Drag and drop to reorder list</p>
+  <div class="background"></div>
+  <div class="todo-container">
+    <div class="todo-top">
+      <h2>todo</h2>
+      <button class="change-light"></button>
     </div>
+    <div class="create-todo">
+      <input type="checkbox" name="createTodoCheck" id="createTodoCheck" class="check newTodoCheck">
+      <input type="text" name="todo" id="create-todo-input" placeholder="Create a new todo…">
+    </div>
+    <div class="todos">
+      <ul class="todos-list">
+        <li class="todos-info">
+          <span class="items-left">0 items left</span>
+          <div class="change-todos-buttons desktop">
+            <button class="change-todos-button all activeState">All</button>
+            <button class="change-todos-button active">Active</button>
+            <button class="change-todos-button completed">Completed</button>
+          </div>
+          <button class="change-todos-button clear-completed">Clear Completed</button>
+        </li>
+      </ul>
+    </div>
+    <div class="change-todos-buttons mobile">
+      <button class="change-todos-button all activeState">All</button>
+      <button class="change-todos-button active">Active</button>
+      <button class="change-todos-button completed">Completed</button>
+    </div>
+    <div class="info">Drag and drop to reorder list</div>
   </div>
-</footer>
-
-  
-
-  <script src="myscripts.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
