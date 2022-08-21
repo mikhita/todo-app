@@ -171,6 +171,10 @@ footer{
     line-height: 12px;
     letter-spacing: -0.1666666716337204px;
     text-align: left;
+    border: 0px solid;
+}
+.writeTodo:focus{
+    outline: none;
 }
 @media only screen and (min-width: 600px){
     body{
