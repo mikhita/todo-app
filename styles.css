@@ -83,7 +83,7 @@ footer{
     padding-left: 80px;
     padding-right: 80px;
 }
-.actives, .completed, .all{
+.choiceTodos button{
     font-family: Josefin Sans;
     font-size: 14px;
     font-weight: 700;
@@ -91,10 +91,15 @@ footer{
     letter-spacing: -0.1944444477558136px;
     text-align: left;
     color: #9495A5;
+    background-color: white;
+    border: none;
 }
-.choiceTodos p:hover{
+.choiceTodos button:hover{
     color: #3A7CFD;
     cursor: pointer;
+}
+.backGroungGray{
+    background-color: #25273D !important;
 }
 .clearCompleteText:hover{
     cursor: pointer;

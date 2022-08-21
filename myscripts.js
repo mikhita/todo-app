@@ -2,6 +2,9 @@ let iconSun = document.querySelector(".iconSun");
 let iconMoon = document.querySelector(".iconMoon");
 let choiceTodos = document.querySelector(".choiceTodos");
 let itemsLeftAndClear = document.querySelector(".itemsLeftAndClear");
+let allOption = document.getElementById("all");
+let actives = document.getElementById("actives");
+let completed = document.getElementById("completed");
 
 iconSun.addEventListener('click',function(event){
     iconSun.style.display = "none";
@@ -11,6 +14,11 @@ iconSun.addEventListener('click',function(event){
     choiceTodos.classList.add("boxShadowNone");
     itemsLeftAndClear.style.background = "#25273D";
     itemsLeftAndClear.classList.add("boxShadowNone");
+    allOption.classList.add("backGroungGray");
+    actives.classList.add("backGroungGray");
+    completed.classList.add("backGroungGray");
+   
+
 
 });
 iconMoon.addEventListener('click',function(event){
@@ -21,6 +29,10 @@ iconMoon.addEventListener('click',function(event){
     choiceTodos.classList.remove("boxShadowNone");
     itemsLeftAndClear.style.background = "#FFFFFF";
     itemsLeftAndClear.classList.remove("boxShadowNone");
+    allOption.classList.remove("backGroungGray");
+    actives.classList.remove("backGroungGray");
+    completed.classList.remove("backGroungGray");
+
 });
 
 
