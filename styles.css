@@ -27,6 +27,7 @@ img.iconDisplayNone{
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
+    margin-bottom: 50px;
 }
 .todoTitle{
     height: 20px;
@@ -70,6 +71,7 @@ footer{
     text-align: left;
     color: #9495A5;
 }
+
 .choiceTodos{
     display: flex;
     flex-direction: row;
@@ -81,7 +83,7 @@ footer{
     padding-left: 80px;
     padding-right: 80px;
 }
-.actives, .completed{
+.actives, .completed, .all{
     font-family: Josefin Sans;
     font-size: 14px;
     font-weight: 700;
@@ -90,14 +92,12 @@ footer{
     text-align: left;
     color: #9495A5;
 }
-.all{
-    font-family: Josefin Sans;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 14px;
-    letter-spacing: -0.1944444477558136px;
-    text-align: left;
+.choiceTodos p:hover{
     color: #3A7CFD;
+    cursor: pointer;
+}
+.clearCompleteText:hover{
+    cursor: pointer;
 }
 .functionality{
     display: flex;
@@ -138,7 +138,7 @@ footer{
     top: 9px;
 }
 
-.checkbox-round:checked {
+.checkboxRoundChecked {
     background: linear-gradient(135deg, #55DDFF 0%, #C058F3 100%);
     
 }

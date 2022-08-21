@@ -21,13 +21,27 @@ iconMoon.addEventListener('click',function(event){
     choiceTodos.classList.remove("boxShadowNone");
     itemsLeftAndClear.style.background = "#FFFFFF";
     itemsLeftAndClear.classList.remove("boxShadowNone");
-
-
 });
 
 
+let todoList = [];
+let inputValue = document.querySelector(".writeTodo");
+let checkboxId = document.getElementById("checkboxId");
+let text = document.getElementById("todo-input");
 
 
+
+function addItem(event){
+        event.preventDefault();
+        let text = document.getElementById("todo-input");
+        checkboxId.classList.toggle("checkboxRoundChecked")
+        console.log(text.value);
+        todoList.push(todo)
+        text.value = "";
+
+}
+
+inputValue.onsubmit = (addItem)
 
 
 

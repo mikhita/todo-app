@@ -21,15 +21,23 @@
 </div>
 
 <div class="inputForAdding">
-  <label class="container">
-    <input type="checkbox" class="checkbox-round">
+  <label class="container">  
+    <input id="checkboxId"  type="checkbox" class="checkbox-round">
     <span class="checkmark"><svg xmlns="http://www.w3.org/2000/svg" width="11"
        height="9"><path fill="none"
        stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/></svg></span>
   </label>
-  <input type="text" class="writeTodo" placeholder="Create a new todo…">
+  
+  <input  id="todo-input" type="text" class="writeTodo" placeholder="Create a new todo…">
+
 </div>
 
+<div class="container">
+
+</div>
+<!-- <div class="todoItemsWrapper"> -->
+
+<!-- </div> -->
   <!-- Add dynamic number --> 
   <footer>
 <div class="itemsLeftAndClear">
@@ -41,9 +49,9 @@
 </div>
   <div class="functionality">
     <div class="choiceTodos">
-      <p class="all">All</p>
-      <p class="actives">Active</p>
-      <p class="completed">Completed</p>
+      <button class="all">All</button> 
+      <button class="actives"> Actives </button>
+      <button class="completed">Completed</button>
   </div>
     <div class="dragAndDrop">
       <p class="dragAndDropText">Drag and drop to reorder list</p>
