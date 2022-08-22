@@ -5,6 +5,25 @@ let itemsLeftAndClear = document.querySelector(".itemsLeftAndClear");
 let allOption = document.getElementById("all");
 let actives = document.getElementById("actives");
 let completed = document.getElementById("completed");
+let inputForAddings = document.getElementById("inputForAdding");
+let itemsCounter = document.querySelector(".itemsCounter");
+
+
+allOption.addEventListener('click',function(event){
+    allOption.classList.add("makeColorBlue");
+    actives.classList.remove("makeColorBlue");
+    completed.classList.remove("makeColorBlue");
+})
+actives.addEventListener('click',function(event){
+    allOption.classList.remove("makeColorBlue");
+    actives.classList.add("makeColorBlue");
+    completed.classList.remove("makeColorBlue");
+})
+completed.addEventListener('click',function(event){
+    allOption.classList.remove("makeColorBlue");
+    actives.classList.remove("makeColorBlue");
+    completed.classList.add("makeColorBlue");
+})
 
 iconSun.addEventListener('click',function(event){
     iconSun.style.display = "none";
@@ -17,7 +36,10 @@ iconSun.addEventListener('click',function(event){
     allOption.classList.add("backGroungGray");
     actives.classList.add("backGroungGray");
     completed.classList.add("backGroungGray");
-   
+    inputForAddings.classList.add("boxShadowNone");
+    inputForAddings.style.background = "#25273D";
+    checkboxId.style.background = "#25273D";
+    todoInput.style.background = "#25273D";
 
 
 });
@@ -32,29 +54,64 @@ iconMoon.addEventListener('click',function(event){
     allOption.classList.remove("backGroungGray");
     actives.classList.remove("backGroungGray");
     completed.classList.remove("backGroungGray");
+    inputForAddings.classList.remove("boxShadowNone");
+    inputForAddings.style.background = "#FFFFFF";
+    checkboxId.style.background = "#FFFFFF";
+    todoInput.style.background = "#FFFFFF";
 
 });
 
 
 let todoList = [];
-let inputValue = document.querySelector(".writeTodo");
 let checkboxId = document.getElementById("checkboxId");
-let text = document.getElementById("todo-input");
+let todoInput = document.getElementById("todo-input");
+let checkmark = document.querySelector(".checkmark");
+let mainContent = document.querySelector(".mainContent");
 
 
+checkboxId.addEventListener('click', function(event){
+    checkboxId.classList.toggle("checkboxRoundChecked");
+    checkmark.classList.toggle("makedisplayBlock");
+})
 
-function addItem(event){
-        event.preventDefault();
-        let text = document.getElementById("todo-input");
-        checkboxId.classList.toggle("checkboxRoundChecked")
-        console.log(text.value);
-        todoList.push(todo)
-        text.value = "";
+checkmark.addEventListener('click', function(event){
+    checkboxId.classList.toggle("checkboxRoundChecked");
+})
+
+function createTodo(){
+    let inputForAdding = document.createElement("div");
+    inputForAdding.classList.add("inputForAdding");
+    mainContent.append(inputForAdding);
+
+    let checkboxRound = document.createElement("input");
+    checkboxRound.classList.add("checkbox-round");
+    checkboxRound.type = "checkbox";
+    inputForAdding.append(checkboxRound);
+
+    let span = document.createElement("span");
+    span.classList.add("checkmark");
+    inputForAdding.append(span);
+
+    let imageCheck = document.createElement("img");
+    imageCheck.setAttribute("src", "./images/icon-check.svg")
+    imageCheck.classList.add("checkImage");
+    span.append(imageCheck);
+
+    let pTag = document.createElement("p");
+    pTag.classList.add("pTag");
+    pTag.innerText = todoInput.value;
+    inputForAdding.append(pTag);
 
 }
 
-inputValue.onsubmit = (addItem)
-
+todoInput.addEventListener('keypress', function(event){
+    if(event.key === "Enter"){
+        createTodo();
+        todoInput.value = "";
+        console.log(mainContent.childNodes.length-1)
+        itemsCounter.innerHTML = mainContent.childNodes.length-1;
+    }
+})
 
 
 
