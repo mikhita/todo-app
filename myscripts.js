@@ -7,6 +7,7 @@ let actives = document.getElementById("actives");
 let completed = document.getElementById("completed");
 let inputForAddings = document.getElementById("inputForAdding");
 let itemsCounter = document.querySelector(".itemsCounter");
+let imageCross = document.querySelector(".imageCross");
 
 
 allOption.addEventListener('click',function(event){
@@ -40,7 +41,7 @@ iconSun.addEventListener('click',function(event){
     inputForAddings.style.background = "#25273D";
     checkboxId.style.background = "#25273D";
     todoInput.style.background = "#25273D";
-
+    todoInput.style.color = "#C8CBE7";
 
 });
 iconMoon.addEventListener('click',function(event){
@@ -71,18 +72,22 @@ let mainContent = document.querySelector(".mainContent");
 
 checkboxId.addEventListener('click', function(event){
     checkboxId.classList.toggle("checkboxRoundChecked");
-    checkmark.classList.toggle("makedisplayBlock");
+    // checkmark.classList.toggle("makedisplayBlock");
+    console.log(event.target.checked)
 })
 
-checkmark.addEventListener('click', function(event){
-    checkboxId.classList.toggle("checkboxRoundChecked");
-})
+// checkmark.addEventListener('click', function(event){
+//     checkboxId.classList.toggle("checkboxRoundChecked");
+// })
 
 function createTodo(){
     let inputForAdding = document.createElement("div");
     inputForAdding.classList.add("inputForAdding");
-    mainContent.append(inputForAdding);
+    
 
+    let hrline = document.createElement("hr");
+    hrline.classList.add("hrline");
+    
     let checkboxRound = document.createElement("input");
     checkboxRound.classList.add("checkbox-round");
     checkboxRound.type = "checkbox";
@@ -102,14 +107,27 @@ function createTodo(){
     pTag.innerText = todoInput.value;
     inputForAdding.append(pTag);
 
+    let imageCross = document.createElement("img");
+    imageCross.setAttribute("src", "./images/icon-cross.svg")
+    imageCross.classList.add("imageCross");
+    inputForAdding.append(imageCross);
+
+    let mainContentChild = document.createElement("div");
+    mainContentChild.classList.add("mainContentChild");
+    mainContent.append(mainContentChild);
+
+    mainContentChild.append(hrline);
+    mainContentChild.append(inputForAdding);
 }
 
 todoInput.addEventListener('keypress', function(event){
-    if(event.key === "Enter"){
+    if(event.key === "Enter" && todoInput.value!==""){
         createTodo();
         todoInput.value = "";
-        console.log(mainContent.childNodes.length-1)
+        // console.log(mainContent.childNodes.length-1)
         itemsCounter.innerHTML = mainContent.childNodes.length-1;
+        todoList = Array.from(mainContent.childNodes);
+        console.log(todoList) ;
     }
 })
 

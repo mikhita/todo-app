@@ -147,7 +147,9 @@ footer{
 }
 
 .checkboxRoundChecked {
-    background: linear-gradient(135deg, #55DDFF 0%, #C058F3 100%);
+    background-color: linear-gradient(135deg, #55DDFF 0%, #C058F3 100%) ;
+    /* background-image: url(./images/icon-check.svg) !important; */
+    /* background-repeat: no-repeat !important; */
 }
 .checkmark{
     position: relative;
@@ -194,6 +196,22 @@ footer{
 }
 .mainContent{
     box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+}
+.hrline{
+    background-color:#E3E4F1;
+    width: 98%;
+    position: relative;
+    left: 5px;
+}
+.imageCross{
+    display: none;
+}
+.inputForAdding:hover .imageCross{
+    cursor: pointer;
+    display: block;
+}
+.inputForAdding:hover {
+    cursor: pointer;
 }
 @media only screen and (min-width: 600px){
     body{
