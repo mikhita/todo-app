@@ -8,6 +8,7 @@ let completed = document.getElementById("completed");
 let inputForAddings = document.getElementById("inputForAdding");
 let itemsCounter = document.querySelector(".itemsCounter");
 let imageCross = document.querySelector(".imageCross");
+let insideDiv ;
 
 
 allOption.addEventListener('click',function(event){
@@ -42,6 +43,7 @@ iconSun.addEventListener('click',function(event){
     checkboxId.style.background = "#25273D";
     todoInput.style.background = "#25273D";
     todoInput.style.color = "#C8CBE7";
+    console.log(insideDiv);
 
 });
 iconMoon.addEventListener('click',function(event){
@@ -63,40 +65,101 @@ iconMoon.addEventListener('click',function(event){
 });
 
 
-let todoList = [];
+let todoList = [
+    {
+        done:false,
+        target:'სახლის დალაგება'
+    },
+    {
+        done:false,
+        target:'აზიდვების გაკეთება'
+    },
+    {
+        done:false,
+        target:'ბუთქემფის პროექტის დასრულება'
+    },
+];
+
+let obj = {
+    done:false,
+    target:'ბუთქემფის პროექტის დასრულება'
+};
+todoList.push(obj);
+let tolodistItem = `<div class="" >${obj.target}</div>`
+
+container.innerHTML += tolodistItem;
+// render();
+// function render() {
+//     todoList.forEach((obj) => {
+//         let tolodistItem = `<div class="" >${obj.target}</div>`
+//         continer.innterHHTML += tolodistItem;
+//     });
+// }
+
 let checkboxId = document.getElementById("checkboxId");
 let todoInput = document.getElementById("todo-input");
 let checkmark = document.querySelector(".checkmark");
 let mainContent = document.querySelector(".mainContent");
 
+// checkboxRounds.addEventListener('click', function(event){
+//     checkboxId.classList.toggle("checkboxRoundChecked");
+//     checkmark.classList.toggle("makedisplayBlock");
+//     console.log(event.target.checked)
+// })
 
 checkboxId.addEventListener('click', function(event){
     checkboxId.classList.toggle("checkboxRoundChecked");
-    // checkmark.classList.toggle("makedisplayBlock");
+    checkmark.classList.toggle("makedisplayBlock");
     console.log(event.target.checked)
 })
 
-// checkmark.addEventListener('click', function(event){
-//     checkboxId.classList.toggle("checkboxRoundChecked");
-// })
+checkmark.addEventListener('click', function(event){
+    checkboxId.classList.toggle("checkboxRoundChecked");
+    checkmark.classList.remove("makedisplayBlock");
+    console.log(event.target.parentElement.nextElementSibling?.checked)
+})
 
-function createTodo(){
+function sum(a, b) {
+    return a + b;
+}
+
+sum(3, 5);
+
+createTodo({
+    target: todoInput.value, done: false
+})
+
+
+
+function createTodo(obj){
+    obj.target;
+    obj.done;
     let inputForAdding = document.createElement("div");
-    inputForAdding.classList.add("inputForAdding");
+    inputForAdding.classList.add("inputForAdding", "inputText");
     
 
     let hrline = document.createElement("hr");
     hrline.classList.add("hrline");
     
     let checkboxRound = document.createElement("input");
-    checkboxRound.classList.add("checkbox-round");
+    checkboxRound.classList.add("checkbox-round", "checkboxRound");
     checkboxRound.type = "checkbox";
     inputForAdding.append(checkboxRound);
-
+    
+    
     let span = document.createElement("span");
     span.classList.add("checkmark");
     inputForAdding.append(span);
-
+    span.addEventListener('click', function(event){
+        checkboxRound.classList.toggle("checkboxRoundChecked");
+        span.classList.remove("makedisplayBlock");
+        // console.log(event.target.nextElementSibling?.checked)
+    })
+    checkboxRound.addEventListener('click',function(event){
+        checkboxRound.classList.toggle("checkboxRoundChecked");
+        span.classList.toggle("makedisplayBlock");
+        // console.log(event.target.checked);
+    })
     let imageCheck = document.createElement("img");
     imageCheck.setAttribute("src", "./images/icon-check.svg")
     imageCheck.classList.add("checkImage");
@@ -118,18 +181,34 @@ function createTodo(){
 
     mainContentChild.append(hrline);
     mainContentChild.append(inputForAdding);
+    insideDiv = inputForAdding;
 }
 
 todoInput.addEventListener('keypress', function(event){
     if(event.key === "Enter" && todoInput.value!==""){
-        createTodo();
-        todoInput.value = "";
+        todoList.push({
+            done:false,
+            target:todoInput.value
+        });
+        createTodo({
+            done: false,
+            target: todoInput.value
+        });
+        createTodo(todoList[todoList.length - 1]);
+        // console.log(todoList);
+        // todoInput.value = "";
         // console.log(mainContent.childNodes.length-1)
-        itemsCounter.innerHTML = mainContent.childNodes.length-1;
-        todoList = Array.from(mainContent.childNodes);
-        console.log(todoList) ;
+        // itemsCounter.innerHTML = mainContent.childNodes.length-1;
+
+        // console.log(todoList) ;
     }
 })
+
+
+
+for(let i=0;i<todoList.length;i++){
+
+}
 
 
 
