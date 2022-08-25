@@ -74,13 +74,14 @@ iconMoon.addEventListener('click',function(event){
 checkboxId.addEventListener('click', function(event){
     checkboxId.classList.toggle("checkboxRoundChecked");
     checkmark.classList.toggle("makedisplayBlock");
-    console.log(event.target.checked)
+    console.log(event.target.checked);
+    
 })
 
 checkmark.addEventListener('click', function(event){
     checkboxId.classList.toggle("checkboxRoundChecked");
     checkmark.classList.remove("makedisplayBlock");
-    console.log(event.target.parentElement.nextElementSibling?.checked)
+    // console.log(event.target.parentElement.nextElementSibling?.checked)
 })
 
 
@@ -110,6 +111,12 @@ function createTodo(obj){
     checkboxRound.addEventListener('click',function(event){
         checkboxRound.classList.toggle("checkboxRoundChecked");
         span.classList.toggle("makedisplayBlock");
+        if(pTag.classList?.contains("overRight")){
+            pTag.classList.remove("overRight")}
+        if(span.classList?.contains("makedisplayBlock")){
+            pTag.classList.add("overRight");
+        } 
+        
         // console.log(event.target.checked);
     })
     let imageCheck = document.createElement("img");
@@ -121,11 +128,20 @@ function createTodo(obj){
     pTag.classList.add("pTag");
     pTag.innerText = obj.target;
     inputForAdding.append(pTag);
+    if(checkboxId.classList?.contains("checkboxRoundChecked")){
+        pTag.classList.add("overRight");
+    }
+     
+    
 
     let imageCross = document.createElement("img");
     imageCross.setAttribute("src", "./images/icon-cross.svg")
     imageCross.classList.add("imageCross");
     inputForAdding.append(imageCross);
+    imageCross.addEventListener('click',function(event){
+        event.target.parentElement.parentElement.remove();
+        itemsCounter.innerHTML -=1;
+    })
 
     let mainContentChild = document.createElement("div");
     mainContentChild.classList.add("mainContentChild");
@@ -144,12 +160,8 @@ todoInput.addEventListener('keypress', function(event){
         });
         createTodo({done:false,target:todoInput.value});
         // createTodo(todoList[todoList.length - 1]);
-        // console.log(todoList);
         todoInput.value = "";
-        // console.log(mainContent.childNodes.length-1)
         itemsCounter.innerHTML = mainContent.childNodes.length-1;
-
-        // console.log(todoList) ;
     }
 })
 

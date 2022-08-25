@@ -223,6 +223,10 @@ footer{
 .inputForAdding:hover {
     cursor: pointer;
 }
+.overRight{
+    text-decoration: line-through;
+    color: #9495A5;
+}
 @media only screen and (min-width: 600px){
     body{
         align-items: center;
