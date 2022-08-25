@@ -106,16 +106,21 @@ function createTodo(obj){
     span.addEventListener('click', function(event){
         checkboxRound.classList.toggle("checkboxRoundChecked");
         span.classList.remove("makedisplayBlock");
+        if(!checkboxRound.classList?.contains("checkboxRoundChecked")){
+            pTag.classList.remove("overRight")}
+        if(checkboxRound.classList?.contains("checkboxRoundChecked")){
+            pTag.classList.add("overRight");
+        } 
         // console.log(event.target.nextElementSibling?.checked)
     })
     checkboxRound.addEventListener('click',function(event){
         checkboxRound.classList.toggle("checkboxRoundChecked");
         span.classList.toggle("makedisplayBlock");
-        if(pTag.classList?.contains("overRight")){
-            pTag.classList.remove("overRight")}
-        if(span.classList?.contains("makedisplayBlock")){
-            pTag.classList.add("overRight");
-        } 
+        if(!checkboxRound.classList?.contains("checkboxRoundChecked")){
+                pTag.classList.remove("overRight")}
+            if(checkboxRound.classList?.contains("checkboxRoundChecked")){
+                pTag.classList.add("overRight");
+            } 
         
         // console.log(event.target.checked);
     })
