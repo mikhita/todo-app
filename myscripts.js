@@ -14,6 +14,8 @@ let todoInput = document.getElementById("todo-input");
 let checkmark = document.querySelector(".checkmark");
 let mainContent = document.querySelector(".mainContent");
 let todoList = [];
+let boxes = [];
+let iconsunClick;
 
 
 allOption.addEventListener('click',function(event){
@@ -48,8 +50,13 @@ iconSun.addEventListener('click',function(event){
     checkboxId.style.background = "#25273D";
     todoInput.style.background = "#25273D";
     todoInput.style.color = "#C8CBE7";
-    console.log(insideDiv);
-
+    boxes = Array.from(document.querySelectorAll(".inputText"));
+            boxes.forEach(inputText => {
+                inputText.style.backgroundColor = '#25273D';
+              });
+              mainContent.classList.add("boxShadowNone");
+             iconsunClick = true;
+    
 });
 iconMoon.addEventListener('click',function(event){
     iconSun.style.display = "block";
@@ -66,6 +73,15 @@ iconMoon.addEventListener('click',function(event){
     inputForAddings.style.background = "#FFFFFF";
     checkboxId.style.background = "#FFFFFF";
     todoInput.style.background = "#FFFFFF";
+    todoInput.style.color = "#393A4B";
+    mainContent.classList.remove("boxShadowNone");
+    boxes = Array.from(document.querySelectorAll(".inputText"));
+            boxes.forEach(inputText => {
+                inputText.style.backgroundColor = '#FFFFFF';
+              });
+              mainContent.classList.remove("boxShadowNone");
+    iconsunClick = false;
+
 
 });
 
@@ -74,7 +90,6 @@ iconMoon.addEventListener('click',function(event){
 checkboxId.addEventListener('click', function(event){
     checkboxId.classList.toggle("checkboxRoundChecked");
     checkmark.classList.toggle("makedisplayBlock");
-    console.log(event.target.checked);
     
 })
 
@@ -167,6 +182,18 @@ todoInput.addEventListener('keypress', function(event){
         // createTodo(todoList[todoList.length - 1]);
         todoInput.value = "";
         itemsCounter.innerHTML = mainContent.childNodes.length-1;
+        boxes = Array.from(document.querySelectorAll(".inputText"));
+        if(iconsunClick===true){
+            boxes.forEach(inputText => {
+                inputText.style.backgroundColor = '#25273D';
+              })   
+             
+        }else if(iconsunClick===false){boxes.forEach(inputText => {
+            inputText.style.backgroundColor = '#FFFFFF';
+        })}
+        
+            
+        
     }
 })
 
