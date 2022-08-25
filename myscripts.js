@@ -9,6 +9,11 @@ let inputForAddings = document.getElementById("inputForAdding");
 let itemsCounter = document.querySelector(".itemsCounter");
 let imageCross = document.querySelector(".imageCross");
 let insideDiv ;
+let checkboxId = document.getElementById("checkboxId");
+let todoInput = document.getElementById("todo-input");
+let checkmark = document.querySelector(".checkmark");
+let mainContent = document.querySelector(".mainContent");
+let todoList = [];
 
 
 allOption.addEventListener('click',function(event){
@@ -65,47 +70,6 @@ iconMoon.addEventListener('click',function(event){
 });
 
 
-let todoList = [
-    {
-        done:false,
-        target:'სახლის დალაგება'
-    },
-    {
-        done:false,
-        target:'აზიდვების გაკეთება'
-    },
-    {
-        done:false,
-        target:'ბუთქემფის პროექტის დასრულება'
-    },
-];
-
-let obj = {
-    done:false,
-    target:'ბუთქემფის პროექტის დასრულება'
-};
-todoList.push(obj);
-let tolodistItem = `<div class="" >${obj.target}</div>`
-
-container.innerHTML += tolodistItem;
-// render();
-// function render() {
-//     todoList.forEach((obj) => {
-//         let tolodistItem = `<div class="" >${obj.target}</div>`
-//         continer.innterHHTML += tolodistItem;
-//     });
-// }
-
-let checkboxId = document.getElementById("checkboxId");
-let todoInput = document.getElementById("todo-input");
-let checkmark = document.querySelector(".checkmark");
-let mainContent = document.querySelector(".mainContent");
-
-// checkboxRounds.addEventListener('click', function(event){
-//     checkboxId.classList.toggle("checkboxRoundChecked");
-//     checkmark.classList.toggle("makedisplayBlock");
-//     console.log(event.target.checked)
-// })
 
 checkboxId.addEventListener('click', function(event){
     checkboxId.classList.toggle("checkboxRoundChecked");
@@ -119,21 +83,8 @@ checkmark.addEventListener('click', function(event){
     console.log(event.target.parentElement.nextElementSibling?.checked)
 })
 
-function sum(a, b) {
-    return a + b;
-}
-
-sum(3, 5);
-
-createTodo({
-    target: todoInput.value, done: false
-})
-
-
 
 function createTodo(obj){
-    obj.target;
-    obj.done;
     let inputForAdding = document.createElement("div");
     inputForAdding.classList.add("inputForAdding", "inputText");
     
@@ -144,6 +95,7 @@ function createTodo(obj){
     let checkboxRound = document.createElement("input");
     checkboxRound.classList.add("checkbox-round", "checkboxRound");
     checkboxRound.type = "checkbox";
+    checkboxRound.checked = obj.done;
     inputForAdding.append(checkboxRound);
     
     
@@ -167,7 +119,7 @@ function createTodo(obj){
 
     let pTag = document.createElement("p");
     pTag.classList.add("pTag");
-    pTag.innerText = todoInput.value;
+    pTag.innerText = obj.target;
     inputForAdding.append(pTag);
 
     let imageCross = document.createElement("img");
@@ -190,15 +142,12 @@ todoInput.addEventListener('keypress', function(event){
             done:false,
             target:todoInput.value
         });
-        createTodo({
-            done: false,
-            target: todoInput.value
-        });
-        createTodo(todoList[todoList.length - 1]);
+        createTodo({done:false,target:todoInput.value});
+        // createTodo(todoList[todoList.length - 1]);
         // console.log(todoList);
-        // todoInput.value = "";
+        todoInput.value = "";
         // console.log(mainContent.childNodes.length-1)
-        // itemsCounter.innerHTML = mainContent.childNodes.length-1;
+        itemsCounter.innerHTML = mainContent.childNodes.length-1;
 
         // console.log(todoList) ;
     }
@@ -210,6 +159,32 @@ for(let i=0;i<todoList.length;i++){
 
 }
 
+
+
+
+// let obj = {
+//     done:false,
+//     target:'ბუთქემფის პროექტის დასრულება'
+// };
+// todoList.push(obj);
+// let tolodistItem = `<div class="" >${obj.target}</div>`
+
+// container.innerHTML += tolodistItem;
+// render();
+// function render() {
+//     todoList.forEach((obj) => {
+//         let tolodistItem = `<div class="" >${obj.target}</div>`
+//         continer.innterHHTML += tolodistItem;
+//     });
+// }
+
+
+
+// checkboxRounds.addEventListener('click', function(event){
+//     checkboxId.classList.toggle("checkboxRoundChecked");
+//     checkmark.classList.toggle("makedisplayBlock");
+//     console.log(event.target.checked)
+// })
 
 
 // let form=document.querySelector("form");
