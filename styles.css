@@ -2,6 +2,7 @@
 *{
     padding: 0;
     margin: 0;
+    /* box-sizing: border-box; */
 }
 body{
     display: flex;
@@ -83,6 +84,7 @@ footer{
     padding-left: 80px;
     padding-right: 80px;
 }
+
 .choiceTodos button{
     font-family: Josefin Sans;
     font-size: 14px;
@@ -132,40 +134,20 @@ footer{
 #inputForAdding{
     margin-bottom: 30px;
 }
-.checkbox-round {
-    width: 1.6em;
-    height: 1.6em;
-    background-color: white;
-    border-radius: 50%;
-    vertical-align: middle;
-    outline: 1px solid #1e5180 !important;
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    cursor: pointer;
-   
-}
+
 .checkboxRound{
     width: 1.6em;
     height: 1.6em;
-    background-color: white;
     border-radius: 50%;
-    vertical-align: middle;
-    outline: 1px solid #1e5180 !important;
     appearance: none;
-    -webkit-appearance: none;
-    outline: none;
     cursor: pointer;
    
 }
-.checkboxRoundChecked {
-    background: linear-gradient(135deg, #55DDFF 0%, #C058F3 100%) !important;
-}
-.checkmark{
-    position: relative;
-    right: 15px;
-    cursor: pointer;
-    display: none;
+.testTest:checked{
+    background-image: url("./images/icon-check.svg");
+    background-position:top 8px left 8px;
+    background-repeat: no-repeat ;
+
 }
 .makedisplayBlock{
     display: block;
@@ -230,6 +212,25 @@ footer{
 }
 .boxShadowNone{
     box-shadow: none;
+}
+#test{
+    width: 1.6em;
+    height: 1.6em;
+    border-radius: 50%;
+    appearance: none;
+    
+}
+#test:checked{
+    background-image: url("./images/icon-check.svg");
+    background-position:top 8px left 8px;
+    background-repeat: no-repeat ;
+
+}
+.testTest {
+    width: 1.6em;
+    height: 1.6em;
+    border-radius: 50%;
+    border: 1px solid red;
 }
 @media only screen and (min-width: 600px){
     body{

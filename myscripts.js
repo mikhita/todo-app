@@ -16,7 +16,13 @@ let mainContent = document.querySelector(".mainContent");
 let todoList = [];
 let boxes = [];
 let iconsunClick;
-
+let id=1;
+let test = document.getElementById("test");
+test.addEventListener('input',function(event){
+    if(test.checked){
+        document.querySelector(".testTest").style.background = "linear-gradient(135deg, #55DDFF 0%, #C058F3 100%)"
+    } else{document.querySelector(".testTest").style.background = "transparent"}
+})
 
 allOption.addEventListener('click',function(event){
     allOption.classList.add("makeColorBlue");
@@ -47,15 +53,15 @@ iconSun.addEventListener('click',function(event){
     completed.classList.add("backGroungGray");
     inputForAddings.classList.add("boxShadowNone");
     inputForAddings.style.background = "#25273D";
-    checkboxId.style.background = "#25273D";
+    test.style.background = "#25273D";
     todoInput.style.background = "#25273D";
     todoInput.style.color = "#C8CBE7";
     boxes = Array.from(document.querySelectorAll(".inputText"));
             boxes.forEach(inputText => {
                 inputText.style.backgroundColor = '#25273D';
               });
-              mainContent.classList.add("boxShadowNone");
-             iconsunClick = true;
+    mainContent.classList.add("boxShadowNone");
+    iconsunClick = true;
     
 });
 iconMoon.addEventListener('click',function(event){
@@ -71,7 +77,7 @@ iconMoon.addEventListener('click',function(event){
     completed.classList.remove("backGroungGray");
     inputForAddings.classList.remove("boxShadowNone");
     inputForAddings.style.background = "#FFFFFF";
-    checkboxId.style.background = "#FFFFFF";
+    test.style.background = "#FFFFFF";
     todoInput.style.background = "#FFFFFF";
     todoInput.style.color = "#393A4B";
     mainContent.classList.remove("boxShadowNone");
@@ -79,7 +85,7 @@ iconMoon.addEventListener('click',function(event){
             boxes.forEach(inputText => {
                 inputText.style.backgroundColor = '#FFFFFF';
               });
-              mainContent.classList.remove("boxShadowNone");
+    mainContent.classList.remove("boxShadowNone");
     iconsunClick = false;
 
 
@@ -87,17 +93,7 @@ iconMoon.addEventListener('click',function(event){
 
 
 
-checkboxId.addEventListener('click', function(event){
-    checkboxId.classList.toggle("checkboxRoundChecked");
-    checkmark.classList.toggle("makedisplayBlock");
-    
-})
 
-checkmark.addEventListener('click', function(event){
-    checkboxId.classList.toggle("checkboxRoundChecked");
-    checkmark.classList.remove("makedisplayBlock");
-    // console.log(event.target.parentElement.nextElementSibling?.checked)
-})
 
 
 function createTodo(obj){
@@ -107,48 +103,33 @@ function createTodo(obj){
 
     let hrline = document.createElement("hr");
     hrline.classList.add("hrline");
+
+    let testTest = document.createElement("div");
+    testTest.classList.add("testTest");
+    
     
     let checkboxRound = document.createElement("input");
-    checkboxRound.classList.add("checkbox-round", "checkboxRound");
+    checkboxRound.classList.add("checkboxRound");
     checkboxRound.type = "checkbox";
     checkboxRound.checked = obj.done;
-    inputForAdding.append(checkboxRound);
+    testTest.append(checkboxRound);
+    inputForAdding.append(testTest);
     
     
-    let span = document.createElement("span");
-    span.classList.add("checkmark");
-    inputForAdding.append(span);
-    span.addEventListener('click', function(event){
-        checkboxRound.classList.toggle("checkboxRoundChecked");
-        span.classList.remove("makedisplayBlock");
-        if(!checkboxRound.classList?.contains("checkboxRoundChecked")){
-            pTag.classList.remove("overRight")}
-        if(checkboxRound.classList?.contains("checkboxRoundChecked")){
-            pTag.classList.add("overRight");
-        } 
-        // console.log(event.target.nextElementSibling?.checked)
-    })
     checkboxRound.addEventListener('click',function(event){
-        checkboxRound.classList.toggle("checkboxRoundChecked");
-        span.classList.toggle("makedisplayBlock");
-        if(!checkboxRound.classList?.contains("checkboxRoundChecked")){
-                pTag.classList.remove("overRight")}
-            if(checkboxRound.classList?.contains("checkboxRoundChecked")){
-                pTag.classList.add("overRight");
-            } 
-        
-        // console.log(event.target.checked);
+                pTag.classList.toggle("overRight");   
+                if(checkboxRound.checked){
+                    testTest.style.background = "linear-gradient(135deg, #55DDFF 0%, #C058F3 100%)"
+                } else{testTest.style.background = "transparent"} 
     })
-    let imageCheck = document.createElement("img");
-    imageCheck.setAttribute("src", "./images/icon-check.svg")
-    imageCheck.classList.add("checkImage");
-    span.append(imageCheck);
+
+    
 
     let pTag = document.createElement("p");
     pTag.classList.add("pTag");
     pTag.innerText = obj.target;
     inputForAdding.append(pTag);
-    if(checkboxId.classList?.contains("checkboxRoundChecked")){
+    if(test.checked){
         pTag.classList.add("overRight");
     }
      
@@ -159,40 +140,59 @@ function createTodo(obj){
     imageCross.classList.add("imageCross");
     inputForAdding.append(imageCross);
     imageCross.addEventListener('click',function(event){
-        event.target.parentElement.parentElement.remove();
+      let removeItem =   event.target.parentElement.parentElement;
         itemsCounter.innerHTML -=1;
+        console.log(removeItem);
+       let removeId = +removeItem.getAttribute("id");
+        removeItem.remove();
+      let removeIndex =  todoList.findIndex((element) => element.id === removeId);
+      console.log(todoList);
+
+        todoList.splice(removeIndex,1)
+        console.log(todoList);
+
     })
 
     let mainContentChild = document.createElement("div");
     mainContentChild.classList.add("mainContentChild");
     mainContent.append(mainContentChild);
+    mainContentChild.id = obj.id; 
 
-    mainContentChild.append(hrline);
     mainContentChild.append(inputForAdding);
+    mainContentChild.append(hrline);
     insideDiv = inputForAdding;
 }
 
 todoInput.addEventListener('keypress', function(event){
     if(event.key === "Enter" && todoInput.value!==""){
+        
         todoList.push({
+            id:id++,
             done:false,
             target:todoInput.value
         });
-        createTodo({done:false,target:todoInput.value});
+        mainContent.innerHTML = "";
+        todoList.forEach( (todo)=> {
+            createTodo(todo);
+        })
+        console.log(todoList)
+        // createTodo({done:false,target:todoInput.value});
         // createTodo(todoList[todoList.length - 1]);
         todoInput.value = "";
-        itemsCounter.innerHTML = mainContent.childNodes.length-1;
-        boxes = Array.from(document.querySelectorAll(".inputText"));
+        itemsCounter.innerHTML = mainContent.childNodes.length;
+        boxes = document.querySelectorAll(".inputText");
         if(iconsunClick===true){
             boxes.forEach(inputText => {
                 inputText.style.backgroundColor = '#25273D';
+                inputText.childNodes[0].style.background = "#25273D";
               })   
              
-        }else if(iconsunClick===false){boxes.forEach(inputText => {
+        }else if(iconsunClick === false){boxes.forEach(inputText => {
             inputText.style.backgroundColor = '#FFFFFF';
+            inputText.childNodes[0].style.background = "#FFFFFF";
         })}
         
-            
+        
         
     }
 })
