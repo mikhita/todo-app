@@ -143,7 +143,7 @@ footer{
     cursor: pointer;
    
 }
-.testTest:checked{
+.checkboxRound:checked{
     background-image: url("./images/icon-check.svg");
     background-position:top 8px left 8px;
     background-repeat: no-repeat ;
@@ -182,6 +182,9 @@ footer{
     color: #3A7CFD !important;
 
 }
+.colorWhiteC{
+    color: white;
+}
 .pTag{
     height: 18px;
     overflow-x:auto;
@@ -214,11 +217,11 @@ footer{
     box-shadow: none;
 }
 #test{
-    width: 1.6em;
-    height: 1.6em;
+    width: 25px;
+    height: 27px;
     border-radius: 50%;
     appearance: none;
-    
+    cursor: pointer;
 }
 #test:checked{
     background-image: url("./images/icon-check.svg");

@@ -18,7 +18,10 @@ let boxes = [];
 let iconsunClick;
 let id=1;
 let test = document.getElementById("test");
-test.addEventListener('input',function(event){
+
+
+
+test.addEventListener('change',function(event){
     if(test.checked){
         document.querySelector(".testTest").style.background = "linear-gradient(135deg, #55DDFF 0%, #C058F3 100%)"
     } else{document.querySelector(".testTest").style.background = "transparent"}
@@ -53,16 +56,15 @@ iconSun.addEventListener('click',function(event){
     completed.classList.add("backGroungGray");
     inputForAddings.classList.add("boxShadowNone");
     inputForAddings.style.background = "#25273D";
-    test.style.background = "#25273D";
     todoInput.style.background = "#25273D";
     todoInput.style.color = "#C8CBE7";
-    boxes = Array.from(document.querySelectorAll(".inputText"));
-            boxes.forEach(inputText => {
-                inputText.style.backgroundColor = '#25273D';
-              });
     mainContent.classList.add("boxShadowNone");
     iconsunClick = true;
-    
+    boxes.forEach(inputText => {
+        inputText.style.backgroundColor = '#25273D';
+        inputText.childNodes[0].style.background = "#25273D";
+      })   
+      
 });
 iconMoon.addEventListener('click',function(event){
     iconSun.style.display = "block";
@@ -77,18 +79,16 @@ iconMoon.addEventListener('click',function(event){
     completed.classList.remove("backGroungGray");
     inputForAddings.classList.remove("boxShadowNone");
     inputForAddings.style.background = "#FFFFFF";
-    test.style.background = "#FFFFFF";
     todoInput.style.background = "#FFFFFF";
     todoInput.style.color = "#393A4B";
     mainContent.classList.remove("boxShadowNone");
-    boxes = Array.from(document.querySelectorAll(".inputText"));
-            boxes.forEach(inputText => {
-                inputText.style.backgroundColor = '#FFFFFF';
-              });
     mainContent.classList.remove("boxShadowNone");
     iconsunClick = false;
-
-
+    boxes.forEach(inputText => {
+        inputText.style.backgroundColor = '#FFFFFF';
+        inputText.childNodes[0].style.background = "#FFFFFF";
+    })
+    
 });
 
 
@@ -142,14 +142,14 @@ function createTodo(obj){
     imageCross.addEventListener('click',function(event){
       let removeItem =   event.target.parentElement.parentElement;
         itemsCounter.innerHTML -=1;
-        console.log(removeItem);
+        // console.log(removeItem);
        let removeId = +removeItem.getAttribute("id");
         removeItem.remove();
       let removeIndex =  todoList.findIndex((element) => element.id === removeId);
-      console.log(todoList);
+    //   console.log(todoList);
 
         todoList.splice(removeIndex,1)
-        console.log(todoList);
+        // console.log(todoList);
 
     })
 
@@ -175,7 +175,7 @@ todoInput.addEventListener('keypress', function(event){
         todoList.forEach( (todo)=> {
             createTodo(todo);
         })
-        console.log(todoList)
+        // console.log(todoList)
         // createTodo({done:false,target:todoInput.value});
         // createTodo(todoList[todoList.length - 1]);
         todoInput.value = "";
@@ -197,11 +197,6 @@ todoInput.addEventListener('keypress', function(event){
     }
 })
 
-
-
-for(let i=0;i<todoList.length;i++){
-
-}
 
 
 
