@@ -43,6 +43,7 @@ completed.addEventListener('click',function(event){
     completed.classList.add("makeColorBlue");
 })
 
+
 iconSun.addEventListener('click',function(event){
     iconSun.style.display = "none";
     iconMoon.classList.remove("iconDisplayNone");
@@ -132,9 +133,19 @@ function createTodo(obj){
     if(test.checked){
         pTag.classList.add("overRight");
     }
-     
-    
-
+    iconSun.addEventListener('click',function(event){
+        pTag.classList.add("colorWhiteC")
+    });
+    iconMoon.addEventListener('click',function(event){
+        pTag.classList.remove("colorWhiteC")
+    });
+    todoInput.addEventListener('keypress', function(event){
+        if(event.key === "Enter" && todoInput.value!==""){
+           if(iconsunClick === true){
+            pTag.classList.add("colorWhiteC")
+           }else if(iconsunClick === false){pTag.classList.remove("colorWhiteC")}
+        }
+    })
     let imageCross = document.createElement("img");
     imageCross.setAttribute("src", "./images/icon-cross.svg")
     imageCross.classList.add("imageCross");
@@ -142,14 +153,14 @@ function createTodo(obj){
     imageCross.addEventListener('click',function(event){
       let removeItem =   event.target.parentElement.parentElement;
         itemsCounter.innerHTML -=1;
-        // console.log(removeItem);
+     
        let removeId = +removeItem.getAttribute("id");
         removeItem.remove();
       let removeIndex =  todoList.findIndex((element) => element.id === removeId);
-    //   console.log(todoList);
+   
 
         todoList.splice(removeIndex,1)
-        // console.log(todoList);
+       
 
     })
 
@@ -175,9 +186,7 @@ todoInput.addEventListener('keypress', function(event){
         todoList.forEach( (todo)=> {
             createTodo(todo);
         })
-        // console.log(todoList)
-        // createTodo({done:false,target:todoInput.value});
-        // createTodo(todoList[todoList.length - 1]);
+        
         todoInput.value = "";
         itemsCounter.innerHTML = mainContent.childNodes.length;
         boxes = document.querySelectorAll(".inputText");

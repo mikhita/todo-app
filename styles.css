@@ -183,7 +183,7 @@ footer{
 
 }
 .colorWhiteC{
-    color: white;
+    color: white !important;
 }
 .pTag{
     height: 18px;
