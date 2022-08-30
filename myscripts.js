@@ -64,6 +64,7 @@ iconSun.addEventListener('click',function(event){
     boxes.forEach(inputText => {
         inputText.style.backgroundColor = '#25273D';
         inputText.childNodes[0].style.background = "#25273D";
+        inputText.childNodes[1].style.color = "#FFFFFF";
       })   
       
 });
@@ -88,6 +89,7 @@ iconMoon.addEventListener('click',function(event){
     boxes.forEach(inputText => {
         inputText.style.backgroundColor = '#FFFFFF';
         inputText.childNodes[0].style.background = "#FFFFFF";
+        inputText.childNodes[1].style.color = "#393A4B";
     })
     
 });
@@ -119,7 +121,7 @@ function createTodo(obj){
     
     checkboxRound.addEventListener('click',function(event){
                 pTag.classList.toggle("overRight");   
-                if(checkboxRound.checked){
+                if(obj.done){
                     testTest.style.background = "linear-gradient(135deg, #55DDFF 0%, #C058F3 100%)"
                 } else{testTest.style.background = "transparent"} 
     })
@@ -130,9 +132,10 @@ function createTodo(obj){
     pTag.classList.add("pTag");
     pTag.innerText = obj.target;
     inputForAdding.append(pTag);
-    if(test.checked){
+    if(obj.done){
         pTag.classList.add("overRight");
     }
+    
     iconSun.addEventListener('click',function(event){
         pTag.classList.add("colorWhiteC")
     });
@@ -179,12 +182,15 @@ todoInput.addEventListener('keypress', function(event){
         
         todoList.push({
             id:id++,
-            done:false,
+            done:test.checked,
             target:todoInput.value
         });
+        
         mainContent.innerHTML = "";
+        
         todoList.forEach( (todo)=> {
             createTodo(todo);
+            
         })
         
         todoInput.value = "";
@@ -194,11 +200,13 @@ todoInput.addEventListener('keypress', function(event){
             boxes.forEach(inputText => {
                 inputText.style.backgroundColor = '#25273D';
                 inputText.childNodes[0].style.background = "#25273D";
+                inputText.childNodes[1].style.color = "#FFFFFF";
               })   
              
         }else if(iconsunClick === false){boxes.forEach(inputText => {
             inputText.style.backgroundColor = '#FFFFFF';
             inputText.childNodes[0].style.background = "#FFFFFF";
+            inputText.childNodes[1].style.color = "#393A4B";
         })}
         
         
