@@ -120,7 +120,9 @@ function createTodo(obj){
     
     
     checkboxRound.addEventListener('click',function(event){
-                pTag.classList.toggle("overRight");   
+
+                pTag.classList.toggle("overRight");  
+                obj.done = !obj.done; 
                 if(obj.done){
                     testTest.style.background = "linear-gradient(135deg, #55DDFF 0%, #C058F3 100%)"
                 } else{testTest.style.background = "transparent"} 
@@ -190,7 +192,6 @@ todoInput.addEventListener('keypress', function(event){
         
         todoList.forEach( (todo)=> {
             createTodo(todo);
-            
         })
         
         todoInput.value = "";
