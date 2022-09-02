@@ -63,7 +63,7 @@ footer{
     align-items: center;
     width: 60px;
 }
-.itemsCounter, .itemsLeftText, .clearCompleteText, .dragAndDropText{
+.itemsCounter, .itemsLeftText, .clearCompleteText, .dragAndDropText, .itemsCounterMedia{
     font-family: Josefin Sans;
     font-size: 12px;
     font-weight: 400;
