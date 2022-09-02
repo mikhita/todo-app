@@ -23,8 +23,31 @@ let completedMedia = document.getElementById("completedMedia");
 let activesMedia = document.getElementById("activesMedia");
 let allMedia = document.getElementById("allMedia");
 let mediaDiv = document.querySelector(".mediaDiv");
+let clearCompleteText = document.querySelector(".clearCompleteText");
+let clear = document.getElementById("clear");
+function styles(){ 
+boxes = document.querySelectorAll(".inputText");
+if(iconsunClick===true){
+    boxes.forEach(inputText => {
+        inputText.style.backgroundColor = '#25273D'; 
+        inputText.childNodes[1].style.color = "#FFFFFF";
+        inputText.childNodes[0].style.background = "#25273D";
+        if(inputText.childNodes[0].childNodes[0].checked===true){
+            inputText.childNodes[0].style.background = "linear-gradient(135deg, #55DDFF 0%, #C058F3 100%)"
+    
+        }
+      })   
+     
+}else if(iconsunClick === false){boxes.forEach(inputText => {
+    inputText.style.backgroundColor = '#FFFFFF';
+    inputText.childNodes[0].style.background = "#FFFFFF";
+    inputText.childNodes[1].style.color = "#393A4B";
+    if(inputText.childNodes[0].childNodes[0].checked===true){
+        inputText.childNodes[0].style.background = "linear-gradient(135deg, #55DDFF 0%, #C058F3 100%)"
 
-
+    }
+})}
+}
 
 test.addEventListener('change',function(event){
     if(test.checked){
@@ -36,24 +59,78 @@ allOption.addEventListener('click',function(event){
     allOption.classList.add("makeColorBlue");
     actives.classList.remove("makeColorBlue");
     completed.classList.remove("makeColorBlue");
+    displayTodos(todoList);
+    styles();
 })
 actives.addEventListener('click',function(event){
     allOption.classList.remove("makeColorBlue");
     actives.classList.add("makeColorBlue");
     completed.classList.remove("makeColorBlue");
+    sortByCategory(false);
+    styles();
 })
 completed.addEventListener('click',function(event){
     allOption.classList.remove("makeColorBlue");
     actives.classList.remove("makeColorBlue");
     completed.classList.add("makeColorBlue");
-    sortByCategory("checked")
+    sortByCategory(true);
+    styles();
 })
 completedMedia.addEventListener('click',function(event){
-    allOption.classList.remove("makeColorBlue");
-    actives.classList.remove("makeColorBlue");
-    completed.classList.add("makeColorBlue");
-    sortByCategory("checked")
+    allMedia.classList.remove("makeColorBlue");
+    activesMedia.classList.remove("makeColorBlue");
+    completedMedia.classList.add("makeColorBlue");
+    sortByCategory(true);
+    styles();
 })
+activesMedia.addEventListener('click',function(event){
+    allMedia.classList.remove("makeColorBlue");
+    activesMedia.classList.add("makeColorBlue");
+    completedMedia.classList.remove("makeColorBlue");
+    sortByCategory(false);
+    styles();
+})
+allMedia.addEventListener('click',function(event){
+    mainContent.innerHTML = "";
+    allMedia.classList.add("makeColorBlue");
+    activesMedia.classList.remove("makeColorBlue");
+    completedMedia.classList.remove("makeColorBlue");
+    displayTodos(todoList);
+    styles();
+})
+clear.addEventListener('click',function(event){
+   todoList = todoList.filter( todo =>  todo.done == false );
+    displayTodos(todoList);
+    console.log(todoList);
+    styles();
+    completedMedia.classList.remove("makeColorBlue");
+})
+clearCompleteText.addEventListener('click',function(event){
+    todoList = todoList.filter( todo =>  todo.done == false );
+     displayTodos(todoList);
+     console.log(todoList);
+     styles();
+     completedMedia.classList.remove("makeColorBlue");
+     completed.classList.remove("makeColorBlue");
+ })
+
+function displayTodos(array){
+    mainContent.innerHTML = "";
+    array.forEach( (todo)=> {
+        createTodo(todo);
+    })
+    itemsCounter.innerHTML = array.length;
+    itemsCounterMedia.innerHTML = array.length;
+    
+}
+function sortByCategory(bool){
+    let filtered = todoList.filter( todo =>  todo.done == bool )
+    displayTodos(filtered);
+
+}
+function remove(arr){
+     arr.remove();
+}
 
 
 iconSun.addEventListener('click',function(event){
@@ -258,19 +335,6 @@ todoInput.addEventListener('keypress', function(event){
 })
 
 
-function displayTodos(array){
-    mainContent.innerHTML = "";
-    array.forEach( (todo)=> {
-        createTodo(todo);
-    })
-    itemsCounter.innerHTML = array.length;
-    itemsCounterMedia.innerHTML = array.length;
-    
-}
-function sortByCategory(text){
-    let filtered = todoList.filter(todo => todo.done )
-    displayTodos(filtered);
 
-}
 
 
