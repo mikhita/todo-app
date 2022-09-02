@@ -41,6 +41,7 @@ completed.addEventListener('click',function(event){
     allOption.classList.remove("makeColorBlue");
     actives.classList.remove("makeColorBlue");
     completed.classList.add("makeColorBlue");
+    sortByCategory("checked")
 })
 
 
@@ -216,6 +217,17 @@ todoInput.addEventListener('keypress', function(event){
 })
 
 
+function displayTodos(array){
+    mainContent.innerHTML = "";
+    array.forEach( (todo)=> {
+        createTodo(todo);
+    })
+    itemsCounter.innerHTML = array.length;
+}
+function sortByCategory(text){
+    let filtered = todoList.filter(todo => todo.done )
+    displayTodos(filtered);
 
+}
 
 

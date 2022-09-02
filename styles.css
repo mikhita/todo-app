@@ -235,7 +235,16 @@ footer{
     border-radius: 50%;
     border: 1px solid red;
 }
+.clearCompleteText:hover{
+    color: #3A7CFD;
+    cursor: pointer;
+    
+}
+.media{
+    display: none;
+}
 @media only screen and (min-width: 600px){
+    
     body{
         align-items: center;
         padding: 6% 24px 10% 24px;
@@ -279,6 +288,32 @@ footer{
 
     }
     footer{
+        display: none;
+    }
+    .media{
+        display: block;
         margin-top: 80px;
+    }
+    .choiceTodosMedia button{
+        background-color: white;
+        border: none;
+        font-family: Josefin Sans;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 14px;
+        letter-spacing: -0.1944444477558136px;
+        text-align: left;
+        color: #9495A5;
+    }
+    .choiceTodosMedia {
+        position: relative;
+        left: 10px;
+    }
+    .functionality{
+        top:17px;
+    }
+    .choiceTodosMedia button:hover{
+        color: #3A7CFD;
+        cursor: pointer;
     }
 }
