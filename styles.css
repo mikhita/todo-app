@@ -307,7 +307,10 @@ footer{
     }
     .choiceTodosMedia {
         position: relative;
-        left: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 180px;
     }
     .functionality{
         top:17px;
